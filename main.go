@@ -1,42 +1,20 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
-	"log"
-	"os"
+	_ "github.com/go-sql-driver/mysql"
+	//"time"
 )
 
 func main() {
-	//data := make([]byte, 100) //this is called a byte slice
+	fmt.Println("welcome to my database connection")
 
-	err := writeData(`my name is Miracle`)
+	db, err := sql.Open("mysql", "root:Racco1999#@/")
 	if err != nil {
-		log.Fatal(err)
+		panic("error connecting to database")
 	}
-	errTwo := writeData(`my name is Miracle ope`)
-	if errTwo != nil {
-		log.Fatal(errTwo)
-	}
+	fmt.Println(db)
+	//defer db.Close()
 
-	theData, err := os.ReadFile(`C:\Users\DELL\Desktop\itemData.txt`)
-	if err != nil {
-		log.Fatal(err)
-	}
-	os.Stdout.Write(theData)
-	//fmt.Println(string(theData))
-
-	//var lines []string = []string{"opeyemi", "loveth"}
-	//addDataToNewLine(lines)
-}
-
-func writeData(content string) error {
-	err := os.WriteFile(`C:\Users\DELL\Desktop\itemData.txt`, []byte(content), 0666)
-	if err != nil {
-		return err
-	}
-	return nil
-}
-
-func addDataToNewLine(lines []string) {
-	fmt.Println(lines)
 }
