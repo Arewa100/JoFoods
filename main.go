@@ -13,17 +13,20 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	//file, theOpenFileError := os.Open(`C:\Users\DELL\Desktop\itemData.txt`)
-	//if theOpenFileError != nil {
-	//	log.Fatal("error opening file")
-	//}
+	errTwo := writeData(`my name is Miracle ope`)
+	if errTwo != nil {
+		log.Fatal(errTwo)
+	}
 
 	theData, err := os.ReadFile(`C:\Users\DELL\Desktop\itemData.txt`)
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(string(theData))
+	os.Stdout.Write(theData)
+	//fmt.Println(string(theData))
+
+	//var lines []string = []string{"opeyemi", "loveth"}
+	//addDataToNewLine(lines)
 }
 
 func writeData(content string) error {
@@ -32,4 +35,8 @@ func writeData(content string) error {
 		return err
 	}
 	return nil
+}
+
+func addDataToNewLine(lines []string) {
+	fmt.Println(lines)
 }
